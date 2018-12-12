@@ -41,19 +41,16 @@ public class CertificationSave extends HttpServlet {
             Part filePart = request.getPart("certification"); // Retrieves <input type="file" name="profileImage">
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // Internet Explorer getSubmittedFileName fix.
 
-            new File(prefix + "certifications").mkdirs(); //creates the directory folder if it doesn't exist
+            new File(prefix + "../certifications").mkdirs(); //creates the directory folder if it doesn't exist
             fileName = fileName.replaceAll("\\s", "");
-            File tmpDir = new File(prefix + "/certifications/" + fileName);
+            File tmpDir = new File(prefix + "../certifications/" + fileName);
             boolean exists = tmpDir.exists();
 
-            System.out.println("Directory:" + prefix);
-            System.out.println(fileName);
+       
             if (exists) {
                 out.println("The certification already exists");
             } else {
-                System.out.println("1");
-                filePart.write(prefix + "/certifications/" + fileName);//save file to disk
-                System.out.println("2");
+                filePart.write(prefix + "../certifications/" + fileName);//save file to disk
                 out.println("The certification was saved successfully");
             }
         }
