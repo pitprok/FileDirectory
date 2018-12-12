@@ -42,13 +42,13 @@ public class ActivityImageSave extends HttpServlet {
             String prefix = getServletContext().getRealPath("/");
             new File(prefix + "activityimages").mkdirs(); //creates the directory folder if it doesn't exist
             fileName = fileName.replaceAll("\\s", "");
-            File tmpDir = new File(prefix + "/activityimages/" + fileName);
+            File tmpDir = new File(prefix + "../maindirectory/activityimages/" + fileName);
             boolean exists = tmpDir.exists();
             if (exists) {
                 out.println("Image name already exists");
             } else {
-                filePart.write(prefix + "/activityimages/" + fileName);//save file to disk
-
+                filePart.write(prefix + "../maindirectory/activityimages/" + fileName);//save file to disk
+                filePart.write(prefix + "../../filebackups/activityimages/" + fileName);
                 out.println("The image was saved successfully");
             }
         }
