@@ -8,6 +8,7 @@ package Servlets;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -21,8 +22,8 @@ import javax.servlet.http.Part;
  * @author pitpr
  */
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
-        maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 10)
-public class ResumeSave extends HttpServlet {
+        maxFileSize = 1024 * 1024 * 50, maxRequestSize = 1024 * 1024 * 50)
+public class Upload extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,22 +38,23 @@ public class ResumeSave extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            Part filePart = request.getPart("resume"); // Retrieves <input type="file" name="profileImage">
-            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // Internet Explorer getSubmittedFileName fix.
             String prefix = getServletContext().getRealPath("/");
-            new File(prefix + "resumes").mkdirs(); //creates the directory folder if it doesn't exist
-            fileName = fileName.replaceAll("\\s", "");
-            File tmpDir = new File(prefix + "/resumes/" + fileName);
-            
-            System.out.println(prefix + "/resumes/" + fileName);
-
+            Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+            String directoryName = request.getParameter("filecategory");
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // Internet Explorer getSubmittedFileName fix.
+            new File(prefix + "../cloud/" + directoryName).mkdirs(); //creates the directory folder if it doesn't exist
+            new File(prefix + "../../filesbackup/" + directoryName).mkdirs();
+//            fileName = fileName.replaceAll("\\s", "");
+            File tmpDir = new File(prefix + "../cloud/" + directoryName + fileName);
             boolean exists = tmpDir.exists();
             if (exists) {
-                out.println("The resume already exists");
+                out.println("The file already exists");
             } else {
-                filePart.write(prefix + "/resumes/" + fileName);//save file to disk
-
-                out.println("The resume was saved successfully");
+                filePart.write(prefix + "../cloud/" + directoryName + fileName);//save file to disk
+                filePart.write(prefix + "../../filesbackup/" + directoryName + fileName);
+                out.println(fileName);
+                out.println("The file was saved successfully <br/>");
+                out.println("You can find it at 'servername':'serverport'/cloud/"+directoryName+fileName);
             }
         }
     }

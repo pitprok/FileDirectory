@@ -1,36 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+  
     <servlet>
-        <servlet-name>ProfileImageSave</servlet-name>
-        <servlet-class>Servlets.ProfileImageSave</servlet-class>
+        <servlet-name>Upload</servlet-name>
+        <servlet-class>Servlets.Upload</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ActivityImageSave</servlet-name>
-        <servlet-class>Servlets.ActivityImageSave</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ResumeSave</servlet-name>
-        <servlet-class>Servlets.ResumeSave</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CertificationSave</servlet-name>
-        <servlet-class>Servlets.CertificationSave</servlet-class>
-    </servlet>
+    
     <servlet-mapping>
-        <servlet-name>ProfileImageSave</servlet-name>
-        <url-pattern>/ProfileImageSave</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ActivityImageSave</servlet-name>
-        <url-pattern>/ActivityImageSave</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ResumeSave</servlet-name>
-        <url-pattern>/ResumeSave</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CertificationSave</servlet-name>
-        <url-pattern>/CertificationSave</url-pattern>
+        <servlet-name>Upload</servlet-name>
+        <url-pattern>/Upload</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

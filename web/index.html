@@ -12,24 +12,35 @@ and open the template in the editor.
     </head>
     <body>
         
-        <form method="POST" enctype="multipart/form-data" action="CertificationSave">
-            <input type="file" name="certification"/>
+        <form method="POST" enctype="multipart/form-data" action="Upload" accept-charset="UTF-8">
+            <input type="file" name="file"/>
+            <input type="text" name="filecategory" value="certificates/" hidden/>
             <button type="submit">Submit certification</button>
         </form>
         <br/>
-        <form method="POST" enctype="multipart/form-data" action="ResumeSave">
-            <input type="file" name="resume"/>
+        <form method="POST" enctype="multipart/form-data" action="Upload" accept-charset="UTF-8">
+            <input type="file" name="file"/>
+            <input type="text" name="filecategory" value="resumes/" hidden/>
             <button type="submit">Submit resume</button>
         </form>
         <br/>
-        <form method="POST" enctype="multipart/form-data" action="ProfileImageSave">
-            <input type="file" name="profileimage"/>
+        <form method="POST" enctype="multipart/form-data" action="Upload" accept-charset="UTF-8">
+            <input type="file" name="file"/>
+            <input type="text" name="filecategory" value="profileimages/" hidden/>
             <button type="submit">Submit profile image</button>
         </form>
         <br/>
-        <form method="POST" enctype="multipart/form-data" action="ActivityImageSave">
-            <input type="file" name="activityimage"/>
+        <form method="POST" enctype="multipart/form-data" action="Upload" accept-charset="UTF-8">
+            <input type="file" name="file"/>
+            <input type="text" name="filecategory" value="activityimages/" hidden/>
             <button type="submit">Submit activity image</button>
         </form>
+        <br/>
+        <form method="POST" enctype="multipart/form-data" action="Upload" accept-charset="UTF-8">
+            <input type="file" name="file"/>
+            <input type="text" name="filecategory" value="jnpepimages/" hidden/>
+            <button type="submit">Submit image for jnpep</button>
+        </form>
+        <br/>
     </body>
 </html>
